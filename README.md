@@ -28,6 +28,8 @@
 ---
 
 ## 🌐 웹앱 사용법
+https://finalethic2-7ad5gnw8xrzi8dou3ugxr3.streamlit.app/
+
 <img width="1000" height="1000" alt="qrcode_232489529_8b7363beb89dc8d887cc4d123a4524f1" src="https://github.com/user-attachments/assets/5baad426-20e6-4d06-b52d-e6bfe03de996" />
 
 

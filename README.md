@@ -1,6 +1,6 @@
 # Final_Ethic2
 
-# Final_Ethic
+# Final_Ethic２
 
 # 🤖 EthicProject: AI 윤리 융합 수업 웹앱
 

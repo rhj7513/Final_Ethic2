@@ -28,10 +28,6 @@
 ---
 
 ## 🌐 웹앱 사용법
+<img width="1000" height="1000" alt="qrcode_232489529_8b7363beb89dc8d887cc4d123a4524f1" src="https://github.com/user-attachments/assets/5baad426-20e6-4d06-b52d-e6bfe03de996" />
 
-```bash
-# 필수 라이브러리 설치
-pip install streamlit pandas requests pillow
 
-# 실행
-<img width="1000" height="1000" alt="qrcode_232489529_8b7363beb89dc8d887cc4d123a4524f1" src="https://github.com/user-attachments/assets/b98e70ef-a443-4dad-bd06-becb8cf0e583" />

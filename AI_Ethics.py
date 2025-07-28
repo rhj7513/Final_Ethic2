@@ -111,24 +111,24 @@ with col1:
                 word_counts = Counter(tokens)
                 df_freq = pd.DataFrame(word_counts.most_common(10), columns=["단어", "출현 빈도수"])
 
-                st.markdown("### ☁️ 단어 워드클라우드")
+                # st.markdown("### ☁️ 단어 워드클라우드")
 
-                try:
-                    wordcloud = WordCloud(
-                        font_path=None,  # 🔥 중요: 폰트 경로 없이 명시적으로 설정
-                        width=800,
-                        height=400,
-                        background_color='white',
-                        colormap='tab10'
-                    ).generate(" ".join(tokens))
+                # try:
+                #     wordcloud = WordCloud(
+                #         font_path=None,  # 🔥 중요: 폰트 경로 없이 명시적으로 설정
+                #         width=800,
+                #         height=400,
+                #         background_color='white',
+                #         colormap='tab10'
+                #     ).generate(" ".join(tokens))
 
-                    fig_wc, ax_wc = plt.subplots(figsize=(10, 5))
-                    ax_wc.imshow(wordcloud, interpolation='bilinear')
-                    ax_wc.axis("off")
-                    st.pyplot(fig_wc)
+                #     fig_wc, ax_wc = plt.subplots(figsize=(10, 5))
+                #     ax_wc.imshow(wordcloud, interpolation='bilinear')
+                #     ax_wc.axis("off")
+                #     st.pyplot(fig_wc)
 
-                except Exception as e:
-                    st.warning(f"⚠️ 워드클라우드 생성 중 오류 발생: {e}")
+                # except Exception as e:
+                #     st.warning(f"⚠️ 워드클라우드 생성 중 오류 발생: {e}")
 
         except FileNotFoundError:
             st.error("data.txt 파일이 존재하지 않습니다.")

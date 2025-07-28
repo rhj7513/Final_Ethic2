@@ -5,10 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
-# 한글,.,.,.,.
-# import os
-# font_path = os.path.join("fonts", "NanumGothicCoding.ttf")  # ✅ 절대 문자열 말고 os.path로 처리!
-
 # ---------- 기본 설정 ----------
 video_urls = [
     'https://www.youtube.com/watch?v=h9nQNPXPWig',
@@ -59,15 +55,12 @@ with col1:
         with prev_col:
             if st.button("⬅️ 이전 영상", use_container_width=True, key="prev"):
                 st.session_state.video_index = (idx - 1) % len(video_urls)
-                # st.experimental_rerun()
                 st.rerun()
 
         with next_col:
             if st.button("다음 영상 ➡️", use_container_width=True, key="next"):
                 st.session_state.video_index = (idx + 1) % len(video_urls)
-                # st.experimental_rerun()
                 st.rerun()
-
 
         st.caption(f"📼 현재 영상: {idx + 1} / {len(video_urls)}")
 
@@ -118,59 +111,24 @@ with col1:
                 word_counts = Counter(tokens)
                 df_freq = pd.DataFrame(word_counts.most_common(10), columns=["단어", "출현 빈도수"])
 
-                # # 📊 막대 그래프
-                # st.markdown("### 📊 가장 많이 나온 단어 Top 10")
-                # fig_bar, ax = plt.subplots(figsize=(8, 5))
-                # bars = ax.barh(df_freq["단어"], df_freq["출현 빈도수"], color="#4A90E2")
-                # ax.invert_yaxis()
-                # ax.set_xlabel("출현 빈도수", fontsize=12)
-                # ax.set_title("학생 의견에서 가장 많이 등장한 단어", fontsize=14)
-                # for bar in bars:
-                #     width = bar.get_width()
-                #     ax.text(width + 0.1, bar.get_y() + bar.get_height()/2,
-                #             f"{int(width)}", va='center', fontsize=10)
-                # st.pyplot(fig_bar)
+                # ☁️ 워드클라우드
+                st.markdown("### ☁️ 단어 워드클라우드")
 
-                # # ☁️ 워드클라우드
-                # st.markdown("### ☁️ 단어 워드클라우드")
-                # text_for_wc = " ".join(tokens)
-                # wordcloud = WordCloud(
-                #     font_path="./fonts/NanumGothic.ttf",  # 폰트 파일 필요!
-                #     width=800,
-                #     height=400,
-                #     background_color='white',
-                #     colormap='tab10'
-                # ).generate(text_for_wc)
+                try:
+                    wordcloud = WordCloud(
+                        width=800,
+                        height=400,
+                        background_color='white',
+                        colormap='tab10'
+                    ).generate(" ".join(tokens))
 
-                # fig_wc, ax_wc = plt.subplots(figsize=(10, 5))
-                # ax_wc.imshow(wordcloud, interpolation='bilinear')
-                # ax_wc.axis("off")
-                # st.pyplot(fig_wc)
-                # 워드클라우드 생성
-                # wordcloud = WordCloud(
-                #     # font_path="./fonts/NanumGothic.ttf",
-                #     font_path="fonts/NanumGothicCoding.ttf",  # ← 이 부분만 수정!
-                #     width=800,
-                #     height=400,
-                #     background_color='white',
-                #     colormap='tab10'
-                # ).generate(" ".join(tokens))
-                wordcloud = WordCloud(
-                    # font_path=font_path,
-                    width=800,
-                    height=400,
-                    background_color='white',
-                    colormap='tab10'
-                ).generate(" ".join(tokens))
+                    fig_wc, ax_wc = plt.subplots(figsize=(10, 5))
+                    ax_wc.imshow(wordcloud, interpolation='bilinear')
+                    ax_wc.axis("off")
+                    st.pyplot(fig_wc)
 
-                # fig 객체로 캡처 (중요!)
-                fig_wc, ax_wc = plt.subplots(figsize=(10, 5))
-                ax_wc.imshow(wordcloud, interpolation='bilinear')
-                ax_wc.axis("off")
-
-                # Streamlit에서 정확히 렌더링 트리거 되도록
-                st.pyplot(fig_wc)
-
+                except ValueError as e:
+                    st.warning(f"⚠️ 워드클라우드를 생성할 수 없습니다: {e}")
 
         except FileNotFoundError:
             st.error("data.txt 파일이 존재하지 않습니다.")

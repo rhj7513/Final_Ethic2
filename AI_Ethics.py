@@ -144,7 +144,7 @@ with col1:
                 # st.pyplot(fig_wc)
                 # 워드클라우드 생성
                 wordcloud = WordCloud(
-                    font_path="./fonts/NanumGothic.ttf",
+                    font_path="./fonts/NanumGothicCoding.ttf",
                     width=800,
                     height=400,
                     background_color='white',
